@@ -6,6 +6,7 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
+// Get player stats by typing this command "st " + player name (ex. scorpionss19)
 client.on('message', msg => {
   if (msg.content.startsWith('st ')) {
     var id = msg.content.replace('st ', '');
@@ -13,7 +14,7 @@ client.on('message', msg => {
   }
 });
 
-
+// Getting the stats from rpgmobob api
 function getPlayerStatus(e,msg)
 {
   fetch("https://api.rpgmobob.com/playerskills?n=" + e).then(function(e) {
@@ -31,6 +32,8 @@ function getPlayerStatus(e,msg)
 
         })
 }
+
+// Display player stats using an Embed
 
 function SendMessage(msg,name,acc, str, def ,hp ,mag, arch)
 {
@@ -67,6 +70,7 @@ function getRandomColor() {
     return color;
   }
 
+// If some of the stats are 0 this will set them to 1
 function calc_Cl(acc,str,def,hp,arch,mag)
   {
     if(acc == 0) {acc = 1;}
@@ -94,4 +98,5 @@ function calc_Cl(acc,str,def,hp,arch,mag)
     return ~~((acc+str+def+hp) / 4 + (mag / magDev) + (arch / archDev));
     
   }
+// Login 
 client.login(token);
